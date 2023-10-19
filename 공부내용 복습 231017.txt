@@ -1,0 +1,12 @@
+표현식 expression
+
+문장 statement
+
+keyword (ex let continue else function ture let etc...)
+
+식별자 identifier
+
+상수 constant
+
+변수 variable ( var 대신 let 사용)
+
