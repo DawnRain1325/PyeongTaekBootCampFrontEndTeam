@@ -1,0 +1,127 @@
+함수의 매개변수에 바로 값을 입력하는 기본 매개변수는 최신 자바스크립트에서 추가된 기능이고
+
+구버전 자바스크립트에서는 일반적으로 다음과 같은 코드를 사용해서 기본 매개변수를 구현했습니다.
+
+function earnings (wage,hours) {
+wage = typeof (wage) != undefined ? wage = 8590
+houres = typeof(hours) != undefined ? hours : 52
+return wage * hours
+}
+
+매개면수로 들어오는 값이 false 또는 false 로 변환되는 값(0, 빈 문자열 등) 이 아니라는 게 확실 하다면 다음과 같이 짧은 조건문을
+사용해서 기본 매개변수를 구현 할 수 있습니다.
+
+function earnings (wage , hours) {
+wage = wage || 8590
+hours = hours ||52
+return wage * hours 
+}
+
+인터넷에는 구 버전의 자바스크립트로 작성된 참고자료가 많습니다. 구 버전에 대한 것을 기억 해두면 다른사람이 작성한 코드가 어떤 목적으로
+작성했는지 쉽게 알 수 있습니다.
+
+
+익명함수란 이름이 없는 함수로 function () {} 형태로 만듬
+선언적 함수란 이름이 있는 함수로 function () {} 형태로 만듬
+
+함수의 괄호안에 넣는 변수는 매개변수. 매개변수를 통해 함수는 외부의 정보를 입력 받을 수 있습니다.
+함수의 최종적인 결과를 리턴값이라고 합니다. 함수 내부에서 return 키워드를 입력하고 뒤에 값을 넣어서 생성합니다.
+
+가변 매개변수 함수란 매개변수의 개수가 고정되어있지 않은 함수를 의미 합니다.
+전개 연산자란 배열을 함수의 매개변수로써 전개 하고 싶을 때 사용합니다.
+
+기본 매개변수란 매개변수에 기본값이 들어가게 하고 싶을 때 사용하는 매개변수입니다.
+
+콜백함수 
+
+자바스크립트는 함수도 하나의 자료형이라 매개변수로 전달 가능.
+이렇게 매개변수로 전달하는 함수를 callback function 콜백함수.
+
+5-2-1 콜백함수(1) 선언적 함수 사용.
+        <script>
+            function callThreeTimes(callback) {
+                for (let i = 0; i < 3; i++) {
+                    callback(i);
+                }
+            }
+
+            function print(i) {
+                console.log(`${i}번째 함수 호출`);
+            }
+
+            callThreeTimes(print);
+        </script>
+
+callThreeTimes() 함수는 함수를 매개변수로 받아 해당 함수를 3번 호출합니다. callThreeTimes() 함수의
+callback 매개변수에 print() 함수를 전달했습니다. 그리고 callThreeTimes() 함수 내부 에서는 callback(i) 형태로 함수를 호출하고 있습니다.
+따라서 매개변수로 전달했던 print()함수가 print(0),print(1),primt(2)로 차례차례 호출해서 실행 결과와 같은 결과를 냅니다.
+
+5-2-2 콜백함수(2) 익명함수 사용
+
+
+
+        <script>
+            function callThreeTimes(callback) {
+                for (let i = 0; i < 3; i++) {
+                    callback(i);
+                }
+            }
+
+            callThreeTimes(function (i) {
+                console.log(`${i})번째 함수 호출`);
+            });
+        </script>
+
+
+콜백함수를 활용하는 가장 기본적인 함수는 forEach() 메소드.
+forEach() 메소드는 배열이 갖고있는 함수(메소드)로써 단순하게 배열 내부의 요소를 사용해서 콜백 함수를 호출.
+
+function (value,index,array) {}
+
+map() 메소드 역시 배열을 가진 함수이고 이 메소드는 콜백함수에서 리턴한 값들을 기반으로 새로운 배열을 만드는 함수.
+
+5-2-4
+
+ let numbers = [273, 52, 103, 32, 57];
+
+        <script>
+            let numbers = [273, 52, 103, 32, 57];
+
+            //배열의 모든값을 제곱합니다.
+            numbers = numbers.map(function (value, index, index, array) {
+                return value * value;
+            });
+
+            numbers.forEach(console.log);
+
+            // 매개변수로 console.log 메소르 자체를 넣음.
+        </script>
+
+filter () 메소드 역시 배열을 가진 함수. 콜백함수에서 리턴하는 값이 true 인 것들만 모아 새로운 배열을 만드는 함수.
+
+5-2-5 배열의 filter 함수
+
+  const numbers = [0, 1, 2, 3, 4, 5];
+            const evenNumbers = numbers.filter(function (value) {
+                return value % 2 === 0;
+            });
+
+            console.log(`원래 배열:${numbers}`);
+            console.log(`짝수만 추출:${evenNumbers}`);
+
+function(value,index,array) {} 형태의 함수를 사용하는것이 기본적이나 value 만 활용해서 value 만 매개변수 사용하고
+
+value % 2 === 0 을 사용하여 짝수만 모은 새로운 배열을 새로 만들어서 리턴.
+
+
+arrow function (화살표 함수)
+
+map () filter () 함수처럼 단순한 형태의 콜백 함수를 쉽게 입력하고자 할 때 사용 하는 함수.
+
+function 키워드 대신에 => 같이 화살표를 사용함
+
+(매개변수) => {
+}
+
+(매개변수) => 리턴값
+
